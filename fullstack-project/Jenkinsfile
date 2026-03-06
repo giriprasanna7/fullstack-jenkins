@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/YOUR_GITHUB_USERNAME/fullstack-project.git'
+                git 'https://github.com/giriprasanna7/fullstack-jenkins.git'
             }
         }
 
