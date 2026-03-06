@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/giriprasanna7/fullstack-jenkins.git'
+                git branch: 'main', url: 'https://github.com/giriprasanna7/fullstack-jenkins.git'
             }
         }
 
@@ -20,5 +20,6 @@ pipeline {
                 sh 'nohup node backend/server.js &'
             }
         }
+
     }
 }
