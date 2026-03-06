@@ -5,9 +5,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 app.get('/api', (req, res) => {
-    res.json({
-        message: "Hello from Backend Server 🚀"
-    });
+    res.json({ message: "Hello from Backend Server 🚀" });
 });
 
 const PORT = 3000;
