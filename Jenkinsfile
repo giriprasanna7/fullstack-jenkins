@@ -5,13 +5,13 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'cd backend && npm install'
+                sh 'cd fullstack-project/backend && npm install'
             }
         }
 
         stage('Run Application') {
             steps {
-                sh 'nohup node backend/server.js &'
+                sh 'nohup node fullstack-project/backend/server.js &'
             }
         }
 
