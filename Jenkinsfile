@@ -5,13 +5,19 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'cd fullstack-project/backend && npm install'
+                sh '''
+                    cd fullstack-project/backend
+                    npm install
+                '''
             }
         }
 
         stage('Run Application') {
             steps {
-                sh 'nohup node fullstack-project/backend/server.js &'
+                sh '''
+                    cd fullstack-project/backend
+                    pm2 restart server || pm2 start server.js --name server
+                '''
             }
         }
 
