@@ -3,23 +3,42 @@ pipeline {
 
     stages {
 
-        stage('Install Dependencies') {
+        stage('Install Backend Dependencies') {
             steps {
-                sh '''
-                    cd fullstack-project/backend
-                    npm install
-                '''
+                dir('fullstack-project/backend') {
+                    sh 'npm install'
+                }
             }
         }
 
-        stage('Run Application') {
+        stage('Run Backend') {
             steps {
-                sh '''
-                    cd fullstack-project/backend
-                    pm2 restart server || pm2 start server.js --name server
-                '''
+                dir('fullstack-project/backend') {
+                    sh '''
+                        if command -v pm2 > /dev/null; then
+                            pm2 restart server || pm2 start server.js --name server
+                        else
+                            echo "PM2 is not installed"
+                            nohup node server.js > server.log 2>&1 &
+                        fi
+                    '''
+                }
             }
         }
 
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully.'
+        }
+
+        failure {
+            echo 'Pipeline failed.'
+        }
+
+        always {
+            echo 'Pipeline execution finished.'
+        }
     }
 }
