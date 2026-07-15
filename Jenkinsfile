@@ -12,7 +12,7 @@ pipeline {
             }
         }
 
-        stage('Run Application then') {
+        stage('Run Application th') {
             steps {
                 sh '''
                     cd fullstack-project/backend
